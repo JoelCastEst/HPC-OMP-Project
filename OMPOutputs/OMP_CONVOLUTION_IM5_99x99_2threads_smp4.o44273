@@ -1,0 +1,11 @@
+Imatge: /share/apps/files/convolution/images/im05.ppm
+ISizeX : 12000
+ISizeY : 8000
+kSizeX : 99
+kSizeY : 99
+19.472722 seconds elapsed for Reading image file.
+0.615542 seconds elapsed for copying image structure.
+0.036297 seconds elapsed for Reading kernel matrix.
+8796.044558 seconds elapsed for make the convolution.
+25.526445 seconds elapsed for writing the resulting image.
+8843.210912 seconds elapsed

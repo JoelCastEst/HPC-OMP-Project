@@ -1,0 +1,24 @@
+Running MPI+OpenMP hybrid job
+Total slots: 8
+MPI processes: 2
+OMP threads per process: 4
+PE_HOSTFILE:
+compute-0-4.local 4 all.q@compute-0-4.local UNDEFINED
+compute-0-7.local 4 all.q@compute-0-7.local UNDEFINED
+MPICH hostfile:
+compute-0-4.local:4
+compute-0-7.local:4
+Image: /share/apps/files/convolution/images/im02.ppm
+Kernel: /share/apps/files/convolution/kernel/kernel25x25_random.txt
+Output: output_hybrid_im02_25x25_2x4.ppm
+Image size: 600 x 400
+Kernel size: 25 x 25
+MPI processes: 2
+OpenMP max threads per process: 4
+0.099463 seconds elapsed for reading image file.
+0.000816 seconds elapsed for reading kernel matrix.
+0.115998 seconds elapsed for distributing row blocks.
+0.342991 seconds elapsed for local convolution.
+0.126024 seconds elapsed for gathering useful rows.
+0.151317 seconds elapsed for writing the resulting image.
+0.918311 seconds elapsed in total.

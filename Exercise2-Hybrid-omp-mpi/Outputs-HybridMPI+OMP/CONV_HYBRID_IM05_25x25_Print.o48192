@@ -1,0 +1,85 @@
+Running MPI+OpenMP hybrid job
+Total slots: 16
+MPI processes: 4
+OMP threads per process: 4
+PE_HOSTFILE:
+compute-0-1.local 4 all.q@compute-0-1.local UNDEFINED
+compute-0-3.local 4 all.q@compute-0-3.local UNDEFINED
+compute-0-5.local 4 all.q@compute-0-5.local UNDEFINED
+compute-0-4.local 4 all.q@compute-0-4.local UNDEFINED
+MPICH hostfile:
+compute-0-1.local:4
+compute-0-3.local:4
+compute-0-5.local:4
+compute-0-4.local:4
+[DEBUG] Rank 0 -> OpenMP threads actually used: 4
+[DEBUG] Rank 2 -> OpenMP threads actually used: 4
+[DEBUG] Rank 1 -> OpenMP threads actually used: 4
+[DEBUG] Rank 3 -> OpenMP threads actually used: 4
+[DEBUG] Rank 0 BEFORE distribution
+[DEBUG] Rank 1 BEFORE distribution
+[DEBUG] Rank 2 BEFORE distribution
+[DEBUG] Rank 3 BEFORE distribution
+[DEBUG] Master preparing block for rank 0 -> start=0 local=2000 read_start=0 read_rows=2012 send_count=24144000
+[DEBUG] Rank 1 BEFORE recv distribution
+[DEBUG] Rank 2 BEFORE recv distribution
+[DEBUG] Rank 3 BEFORE recv distribution
+[DEBUG] Master preparing block for rank 1 -> start=2000 local=2000 read_start=1988 read_rows=2024 send_count=24288000
+[DEBUG] Master BEFORE send to rank 1
+[DEBUG] Master AFTER send to rank 1
+[DEBUG] Master preparing block for rank 2 -> start=4000 local=2000 read_start=3988 read_rows=2024 send_count=24288000
+[DEBUG] Master BEFORE send to rank 2
+[DEBUG] Rank 1 AFTER recv distribution
+[DEBUG] Master AFTER send to rank 2
+[DEBUG] Master preparing block for rank 3 -> start=6000 local=2000 read_start=5988 read_rows=2012 send_count=24144000
+[DEBUG] Master BEFORE send to rank 3
+[DEBUG] Rank 2 AFTER recv distribution
+[DEBUG] Master AFTER send to rank 3
+[DEBUG] Rank 3 AFTER recv distribution
+[DEBUG] Rank 0 AFTER distribution
+[DEBUG] Rank 2 AFTER distribution
+[DEBUG] Rank 1 AFTER distribution
+[DEBUG] Rank 3 AFTER distribution
+[DEBUG] Rank 0 BEFORE convolution
+[DEBUG] Rank 1 BEFORE convolution
+[DEBUG] Rank 2 BEFORE convolution
+[DEBUG] Rank 3 BEFORE convolution
+[DEBUG] Rank 0 AFTER convolution
+[DEBUG] Rank 2 AFTER convolution
+[DEBUG] Rank 1 AFTER convolution
+[DEBUG] Rank 3 AFTER convolution
+[DEBUG] Rank 0 BEFORE gather
+[DEBUG] Rank 2 BEFORE gather
+[DEBUG] Rank 3 BEFORE gather
+[DEBUG] Rank 1 BEFORE gather
+[DEBUG] Rank 2 BEFORE send gather rows=2000
+[DEBUG] Rank 3 BEFORE send gather rows=2000
+[DEBUG] Rank 1 BEFORE send gather rows=2000
+[DEBUG] Master copied own block start_row=0 rows=2000
+[DEBUG] Master BEFORE recv from rank 1 -> recv_offset=24000000 recv_count=24000000
+[DEBUG] Rank 1 AFTER send gather
+[DEBUG] Master AFTER recv from rank 1
+[DEBUG] Master BEFORE recv from rank 2 -> recv_offset=48000000 recv_count=24000000
+[DEBUG] Rank 2 AFTER send gather
+[DEBUG] Master AFTER recv from rank 2
+[DEBUG] Master BEFORE recv from rank 3 -> recv_offset=72000000 recv_count=24000000
+[DEBUG] Rank 3 AFTER send gather
+[DEBUG] Master AFTER recv from rank 3
+[DEBUG] Rank 0 AFTER gather
+[DEBUG] Rank 2 AFTER gather
+[DEBUG] Rank 1 AFTER gather
+[DEBUG] Rank 3 AFTER gather
+Image: /share/apps/files/convolution/images/im05.ppm
+Kernel: /share/apps/files/convolution/kernel/kernel25x25_random.txt
+Output: output_hybrid_im05_25x25_print.ppm
+Image size: 12000 x 8000
+Kernel size: 25 x 25
+MPI processes: 4
+OpenMP max threads per process: 4
+71.616013 seconds elapsed for reading image file.
+0.043306 seconds elapsed for reading kernel matrix.
+67.108996 seconds elapsed for distributing row blocks.
+127.520000 seconds elapsed for local convolution.
+66.151997 seconds elapsed for gathering useful rows.
+111.382258 seconds elapsed for writing the resulting image.
+444.432260 seconds elapsed in total.

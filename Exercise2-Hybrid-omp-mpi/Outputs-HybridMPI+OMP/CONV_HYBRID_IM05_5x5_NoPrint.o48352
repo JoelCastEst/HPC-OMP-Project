@@ -1,0 +1,28 @@
+Running MPI+OpenMP hybrid job
+Total slots: 16
+MPI processes: 4
+OMP threads per process: 4
+PE_HOSTFILE:
+compute-0-4.local 4 all.q@compute-0-4.local UNDEFINED
+compute-0-7.local 4 all.q@compute-0-7.local UNDEFINED
+compute-0-6.local 4 all.q@compute-0-6.local UNDEFINED
+compute-0-3.local 4 all.q@compute-0-3.local UNDEFINED
+MPICH hostfile:
+compute-0-4.local:4
+compute-0-7.local:4
+compute-0-6.local:4
+compute-0-3.local:4
+Image: /share/apps/files/convolution/images/im05.ppm
+Kernel: /share/apps/files/convolution/kernel/kernel5x5_Sharpen.txt
+Output: output_hybrid_im05_5x5_noprint.ppm
+Image size: 12000 x 8000
+Kernel size: 5 x 5
+MPI processes: 4
+OpenMP max threads per process: 4
+68.140000 seconds elapsed for reading image file.
+0.007601 seconds elapsed for reading kernel matrix.
+66.413996 seconds elapsed for distributing row blocks.
+8.545637 seconds elapsed for local convolution.
+70.741679 seconds elapsed for gathering useful rows.
+112.208182 seconds elapsed for writing the resulting image.
+326.198191 seconds elapsed in total.

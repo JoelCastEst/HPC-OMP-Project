@@ -14,12 +14,14 @@ typedef struct {
     float *data;
 } Kernel;
 
+/* Wall-clock timer used for CPU-side phases and total execution time */
 static double wall_time() {
     struct timeval tim;
     gettimeofday(&tim, NULL);
     return tim.tv_sec + tim.tv_usec / 1000000.0;
 }
 
+/* Wrapper to stop execution immediately if any CUDA runtime call fails */
 static void checkCuda(cudaError_t err, const char *msg) {
     if (err != cudaSuccess) {
         fprintf(stderr, "CUDA error at %s: %s\n", msg, cudaGetErrorString(err));
@@ -190,6 +192,7 @@ Kernel *readKernel(char *filename) {
     return k;
 }
 
+/* One GPU thread computes one output pixel of one color channel */
 __global__ void convolve2D_cuda(const int *in, int *out,
                                 int W, int H,
                                 const float *kernel,
@@ -217,6 +220,7 @@ __global__ void convolve2D_cuda(const int *in, int *out,
             int xx = x + n - cx;
             if (xx < 0 || xx >= W) continue;
 
+            /* Kernel indices are flipped to implement standard convolution */
             sum += in[yy * W + xx] * kernel[(ky - 1 - m) * kx + (kx - 1 - n)];
         }
     }
@@ -236,6 +240,7 @@ int main(int argc, char **argv) {
     Imagen *img = NULL;
     Kernel *kern = NULL;
 
+    /* Device buffers for the three input channels, three output channels, and the convolution kernel */
     int *d_Rin = NULL, *d_Gin = NULL, *d_Bin = NULL;
     int *d_Rout = NULL, *d_Gout = NULL, *d_Bout = NULL;
     float *d_kernel = NULL;
@@ -244,12 +249,14 @@ int main(int argc, char **argv) {
     int partitions;
     int blockX, blockY;
 
+    /* CUDA launch configuration selected at runtime through command-line arguments */
     dim3 block, grid;
 
     double tstart_total, tend_total;
     double t_read_img = 0.0, t_read_kernel = 0.0, t_write = 0.0;
-    float t_h2d = 0.0f, t_kernel = 0.0f, t_d2h = 0.0f;
 
+    /* CUDA events are used to time GPU transfers and kernel execution accurately on the device side */
+    float t_h2d = 0.0f, t_kernel = 0.0f, t_d2h = 0.0f;
     cudaEvent_t ev_start, ev_stop;
 
     if (argc != 7) {
@@ -262,9 +269,11 @@ int main(int argc, char **argv) {
         return -1;
     }
 
+    /* The partitions argument is preserved only to keep the same external interface as previous versions */
     partitions = atoi(argv[4]);
     (void)partitions;
 
+    /* Block dimensions are passed as arguments so different CUDA configurations can be tested without recompiling */
     blockX = atoi(argv[5]);
     blockY = atoi(argv[6]);
 
@@ -293,6 +302,7 @@ int main(int argc, char **argv) {
     sizeImg = img->ancho * img->altura;
     sizeKernel = kern->kx * kern->ky;
 
+    /* Allocate device memory for full image channels and the kernel coefficients */
     checkCuda(cudaMalloc((void **)&d_Rin, sizeImg * sizeof(int)), "cudaMalloc d_Rin");
     checkCuda(cudaMalloc((void **)&d_Gin, sizeImg * sizeof(int)), "cudaMalloc d_Gin");
     checkCuda(cudaMalloc((void **)&d_Bin, sizeImg * sizeof(int)), "cudaMalloc d_Bin");
@@ -306,6 +316,7 @@ int main(int argc, char **argv) {
     checkCuda(cudaEventCreate(&ev_start), "cudaEventCreate start");
     checkCuda(cudaEventCreate(&ev_stop), "cudaEventCreate stop");
 
+    /* Measure host-to-device copies, including the three image channels and the convolution kernel */
     checkCuda(cudaEventRecord(ev_start), "record H2D start");
 
     checkCuda(cudaMemcpy(d_Rin, img->R, sizeImg * sizeof(int), cudaMemcpyHostToDevice), "Memcpy R H2D");
@@ -317,10 +328,12 @@ int main(int argc, char **argv) {
     checkCuda(cudaEventSynchronize(ev_stop), "sync H2D stop");
     checkCuda(cudaEventElapsedTime(&t_h2d, ev_start, ev_stop), "elapsed H2D");
 
+    /* The grid is computed so that all pixels of the image are covered by the CUDA launch */
     block = dim3(blockX, blockY);
     grid = dim3((img->ancho + block.x - 1) / block.x,
                 (img->altura + block.y - 1) / block.y);
 
+    /* Launch the same CUDA kernel three times, one for each independent color channel */
     checkCuda(cudaEventRecord(ev_start), "record kernel start");
 
     convolve2D_cuda<<<grid, block>>>(d_Rin, d_Rout, img->ancho, img->altura,
@@ -330,11 +343,13 @@ int main(int argc, char **argv) {
     convolve2D_cuda<<<grid, block>>>(d_Bin, d_Bout, img->ancho, img->altura,
                                      d_kernel, kern->kx, kern->ky, img->maxcolor);
 
+    /* Check launch errors and wait until all GPU work is finished before reading the elapsed time */
     checkCuda(cudaGetLastError(), "kernel launch");
     checkCuda(cudaEventRecord(ev_stop), "record kernel stop");
     checkCuda(cudaEventSynchronize(ev_stop), "sync kernel stop");
     checkCuda(cudaEventElapsedTime(&t_kernel, ev_start, ev_stop), "elapsed kernel");
 
+    /* Measure the time to copy the three output channels back from the device to the host */
     checkCuda(cudaEventRecord(ev_start), "record D2H start");
 
     checkCuda(cudaMemcpy(img->R, d_Rout, sizeImg * sizeof(int), cudaMemcpyDeviceToHost), "Memcpy R D2H");

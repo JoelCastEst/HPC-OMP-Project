@@ -1,0 +1,106 @@
+# This file contains all CUDA execution commands used in the experiments
+# Command format:
+# ./cudaconv <image-file> <kernel-file> <output-file> <partitions> <blockX> <blockY>
+#
+# Parameters:
+# <image-file>  : input PPM image
+# <kernel-file> : convolution kernel file
+# <output-file> : resulting output image
+# <partitions>  : compatibility argument kept from previous versions
+# <blockX>      : CUDA block size in the X dimension
+# <blockY>      : CUDA block size in the Y dimension
+#
+# Standard output is redirected to a log file in order to save execution times
+
+
+# 16x16
+
+./cudaconv im01.ppm kernel5x5_Sharpen.txt out_im01_k5x5_b16x16.ppm 1 16 16 > log_im01_k5x5_b16x16.txt
+./cudaconv im01.ppm kernel25x25_random.txt out_im01_k25x25_b16x16.ppm 1 16 16 > log_im01_k25x25_b16x16.txt
+./cudaconv im01.ppm kernel49x49_random.txt out_im01_k49x49_b16x16.ppm 1 16 16 > log_im01_k49x49_b16x16.txt
+./cudaconv im01.ppm kernel99x99_random.txt out_im01_k99x99_b16x16.ppm 1 16 16 > log_im01_k99x99_b16x16.txt
+
+./cudaconv im02.ppm kernel5x5_Sharpen.txt out_im02_k5x5_b16x16.ppm 1 16 16 > log_im02_k5x5_b16x16.txt
+./cudaconv im02.ppm kernel25x25_random.txt out_im02_k25x25_b16x16.ppm 1 16 16 > log_im02_k25x25_b16x16.txt
+./cudaconv im02.ppm kernel49x49_random.txt out_im02_k49x49_b16x16.ppm 1 16 16 > log_im02_k49x49_b16x16.txt
+./cudaconv im02.ppm kernel99x99_random.txt out_im02_k99x99_b16x16.ppm 1 16 16 > log_im02_k99x99_b16x16.txt
+
+./cudaconv im03.ppm kernel5x5_Sharpen.txt out_im03_k5x5_b16x16.ppm 1 16 16 > log_im03_k5x5_b16x16.txt
+./cudaconv im03.ppm kernel25x25_random.txt out_im03_k25x25_b16x16.ppm 1 16 16 > log_im03_k25x25_b16x16.txt
+./cudaconv im03.ppm kernel49x49_random.txt out_im03_k49x49_b16x16.ppm 1 16 16 > log_im03_k49x49_b16x16.txt
+./cudaconv im03.ppm kernel99x99_random.txt out_im03_k99x99_b16x16.ppm 1 16 16 > log_im03_k99x99_b16x16.txt
+
+./cudaconv im04.ppm kernel5x5_Sharpen.txt out_im04_k5x5_b16x16.ppm 1 16 16 > log_im04_k5x5_b16x16.txt
+./cudaconv im04.ppm kernel25x25_random.txt out_im04_k25x25_b16x16.ppm 1 16 16 > log_im04_k25x25_b16x16.txt
+./cudaconv im04.ppm kernel49x49_random.txt out_im04_k49x49_b16x16.ppm 1 16 16 > log_im04_k49x49_b16x16.txt
+./cudaconv im04.ppm kernel99x99_random.txt out_im04_k99x99_b16x16.ppm 1 16 16 > log_im04_k99x99_b16x16.txt
+
+./cudaconv im05.ppm kernel5x5_Sharpen.txt out_im05_k5x5_b16x16.ppm 1 16 16 > log_im05_k5x5_b16x16.txt
+./cudaconv im05.ppm kernel25x25_random.txt out_im05_k25x25_b16x16.ppm 1 16 16 > log_im05_k25x25_b16x16.txt
+./cudaconv im05.ppm kernel49x49_random.txt out_im05_k49x49_b16x16.ppm 1 16 16 > log_im05_k49x49_b16x16.txt
+./cudaconv im05.ppm kernel99x99_random.txt out_im05_k99x99_b16x16.ppm 1 16 16 > log_im05_k99x99_b16x16.txt
+
+
+
+# 8x8
+
+./cudaconv im01.ppm kernel5x5_Sharpen.txt out_im01_k5x5_b8x8.ppm 1 8 8 > log_im01_k5x5_b8x8.txt
+./cudaconv im01.ppm kernel25x25_random.txt out_im01_k25x25_b8x8.ppm 1 8 8 > log_im01_k25x25_b8x8.txt
+./cudaconv im01.ppm kernel49x49_random.txt out_im01_k49x49_b8x8.ppm 1 8 8 > log_im01_k49x49_b8x8.txt
+./cudaconv im01.ppm kernel99x99_random.txt out_im01_k99x99_b8x8.ppm 1 8 8 > log_im01_k99x99_b8x8.txt
+
+./cudaconv im02.ppm kernel5x5_Sharpen.txt out_im02_k5x5_b8x8.ppm 1 8 8 > log_im02_k5x5_b8x8.txt
+./cudaconv im02.ppm kernel25x25_random.txt out_im02_k25x25_b8x8.ppm 1 8 8 > log_im02_k25x25_b8x8.txt
+./cudaconv im02.ppm kernel49x49_random.txt out_im02_k49x49_b8x8.ppm 1 8 8 > log_im02_k49x49_b8x8.txt
+./cudaconv im02.ppm kernel99x99_random.txt out_im02_k99x99_b8x8.ppm 1 8 8 > log_im02_k99x99_b8x8.txt
+
+./cudaconv im03.ppm kernel5x5_Sharpen.txt out_im03_k5x5_b8x8.ppm 1 8 8 > log_im03_k5x5_b8x8.txt
+./cudaconv im03.ppm kernel25x25_random.txt out_im03_k25x25_b8x8.ppm 1 8 8 > log_im03_k25x25_b8x8.txt
+./cudaconv im03.ppm kernel49x49_random.txt out_im03_k49x49_b8x8.ppm 1 8 8 > log_im03_k49x49_b8x8.txt
+./cudaconv im03.ppm kernel99x99_random.txt out_im03_k99x99_b8x8.ppm 1 8 8 > log_im03_k99x99_b8x8.txt
+
+./cudaconv im04.ppm kernel5x5_Sharpen.txt out_im04_k5x5_b8x8.ppm 1 8 8 > log_im04_k5x5_b8x8.txt
+./cudaconv im04.ppm kernel25x25_random.txt out_im04_k25x25_b8x8.ppm 1 8 8 > log_im04_k25x25_b8x8.txt
+./cudaconv im04.ppm kernel49x49_random.txt out_im04_k49x49_b8x8.ppm 1 8 8 > log_im04_k49x49_b8x8.txt
+./cudaconv im04.ppm kernel99x99_random.txt out_im04_k99x99_b8x8.ppm 1 8 8 > log_im04_k99x99_b8x8.txt
+
+./cudaconv im05.ppm kernel5x5_Sharpen.txt out_im05_k5x5_b8x8.ppm 1 8 8 > log_im05_k5x5_b8x8.txt
+./cudaconv im05.ppm kernel25x25_random.txt out_im05_k25x25_b8x8.ppm 1 8 8 > log_im05_k25x25_b8x8.txt
+./cudaconv im05.ppm kernel49x49_random.txt out_im05_k49x49_b8x8.ppm 1 8 8 > log_im05_k49x49_b8x8.txt
+./cudaconv im05.ppm kernel99x99_random.txt out_im05_k99x99_b8x8.ppm 1 8 8 > log_im05_k99x99_b8x8.txt
+
+
+# 32x8
+
+./cudaconv im01.ppm kernel5x5_Sharpen.txt out_im01_k5x5_b32x8.ppm 1 32 8 > log_im01_k5x5_b32x8.txt
+./cudaconv im01.ppm kernel25x25_random.txt out_im01_k25x25_b32x8.ppm 1 32 8 > log_im01_k25x25_b32x8.txt
+./cudaconv im01.ppm kernel49x49_random.txt out_im01_k49x49_b32x8.ppm 1 32 8 > log_im01_k49x49_b32x8.txt
+./cudaconv im01.ppm kernel99x99_random.txt out_im01_k99x99_b32x8.ppm 1 32 8 > log_im01_k99x99_b32x8.txt
+
+./cudaconv im02.ppm kernel5x5_Sharpen.txt out_im02_k5x5_b32x8.ppm 1 32 8 > log_im02_k5x5_b32x8.txt
+./cudaconv im02.ppm kernel25x25_random.txt out_im02_k25x25_b32x8.ppm 1 32 8 > log_im02_k25x25_b32x8.txt
+./cudaconv im02.ppm kernel49x49_random.txt out_im02_k49x49_b32x8.ppm 1 32 8 > log_im02_k49x49_b32x8.txt
+./cudaconv im02.ppm kernel99x99_random.txt out_im02_k99x99_b32x8.ppm 1 32 8 > log_im02_k99x99_b32x8.txt
+
+./cudaconv im03.ppm kernel5x5_Sharpen.txt out_im03_k5x5_b32x8.ppm 1 32 8 > log_im03_k5x5_b32x8.txt
+./cudaconv im03.ppm kernel25x25_random.txt out_im03_k25x25_b32x8.ppm 1 32 8 > log_im03_k25x25_b32x8.txt
+./cudaconv im03.ppm kernel49x49_random.txt out_im03_k49x49_b32x8.ppm 1 32 8 > log_im03_k49x49_b32x8.txt
+./cudaconv im03.ppm kernel99x99_random.txt out_im03_k99x99_b32x8.ppm 1 32 8 > log_im03_k99x99_b32x8.txt
+
+./cudaconv im04.ppm kernel5x5_Sharpen.txt out_im04_k5x5_b32x8.ppm 1 32 8 > log_im04_k5x5_b32x8.txt
+./cudaconv im04.ppm kernel25x25_random.txt out_im04_k25x25_b32x8.ppm 1 32 8 > log_im04_k25x25_b32x8.txt
+./cudaconv im04.ppm kernel49x49_random.txt out_im04_k49x49_b32x8.ppm 1 32 8 > log_im04_k49x49_b32x8.txt
+./cudaconv im04.ppm kernel99x99_random.txt out_im04_k99x99_b32x8.ppm 1 32 8 > log_im04_k99x99_b32x8.txt
+
+./cudaconv im05.ppm kernel5x5_Sharpen.txt out_im05_k5x5_b32x8.ppm 1 32 8 > log_im05_k5x5_b32x8.txt
+./cudaconv im05.ppm kernel25x25_random.txt out_im05_k25x25_b32x8.ppm 1 32 8 > log_im05_k25x25_b32x8.txt
+./cudaconv im05.ppm kernel49x49_random.txt out_im05_k49x49_b32x8.ppm 1 32 8 > log_im05_k49x49_b32x8.txt
+./cudaconv im05.ppm kernel99x99_random.txt out_im05_k99x99_b32x8.ppm 1 32 8 > log_im05_k99x99_b32x8.txt
+
+
+
+
+
+
+
+

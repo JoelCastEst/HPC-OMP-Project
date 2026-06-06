@@ -1,0 +1,14 @@
+Image: im05.ppm
+Kernel: kernel25x25_random.txt
+Output: out_im05_k25x25_b32x8.ppm
+Image size: 12000 x 8000
+Kernel size: 25 x 25
+CUDA block size: 32 x 8
+CUDA grid size: 375 x 1000
+17.255099 seconds elapsed for reading image file.
+0.000112 seconds elapsed for reading kernel matrix.
+0.253935 seconds elapsed for host to device transfers.
+0.296816 seconds elapsed for CUDA convolution.
+0.260018 seconds elapsed for device to host transfers.
+12.719039 seconds elapsed for writing the resulting image.
+30.896541 seconds elapsed in total.

@@ -1,0 +1,14 @@
+Image: im02.ppm
+Kernel: kernel5x5_Sharpen.txt
+Output: out_im02_k5x5_b16x16.ppm
+Image size: 600 x 400
+Kernel size: 5 x 5
+CUDA block size: 16 x 16
+CUDA grid size: 38 x 25
+0.043941 seconds elapsed for reading image file.
+0.000023 seconds elapsed for reading kernel matrix.
+0.000949 seconds elapsed for host to device transfers.
+0.000209 seconds elapsed for CUDA convolution.
+0.000725 seconds elapsed for device to host transfers.
+0.033303 seconds elapsed for writing the resulting image.
+0.187164 seconds elapsed in total.

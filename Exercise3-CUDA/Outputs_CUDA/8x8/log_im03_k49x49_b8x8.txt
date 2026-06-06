@@ -1,0 +1,14 @@
+Image: im03.ppm
+Kernel: kernel49x49_random.txt
+Output: out_im03_k49x49_b8x8.ppm
+Image size: 800 x 600
+Kernel size: 49 x 49
+CUDA block size: 8 x 8
+CUDA grid size: 100 x 75
+0.098586 seconds elapsed for reading image file.
+0.000307 seconds elapsed for reading kernel matrix.
+0.001577 seconds elapsed for host to device transfers.
+0.007579 seconds elapsed for CUDA convolution.
+0.001339 seconds elapsed for device to host transfers.
+0.067903 seconds elapsed for writing the resulting image.
+0.281368 seconds elapsed in total.

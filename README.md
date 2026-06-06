@@ -16,3 +16,10 @@ By Joel Castillo Estallo & David Carreras Castañ
 
 Everything is located in the Exercise2-Hybrid-omp-mpi
 
+# CUDA-Project
+
+Cuda implementation
+
+By Joel Castillo Estallo & David Carreras Castañ
+
+Everything is located in the Exercise3-Cuda

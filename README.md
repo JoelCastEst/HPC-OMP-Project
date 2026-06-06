@@ -23,3 +23,4 @@ Cuda implementation
 By Joel Castillo Estallo & David Carreras Castañ
 
 Everything is located in the Exercise3-Cuda
+The executions.txt contains detailed information and represents the executions done in the cluster
